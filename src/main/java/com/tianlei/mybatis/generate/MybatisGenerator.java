@@ -1,6 +1,6 @@
 package com.tianlei.mybatis.generate;
 
-import cn.kt.DbRemarksCommentGenerator;
+import com.tianlei.mybatis.generate.plugin.DbRemarksCommentGenerator;
 import com.google.common.base.Strings;
 import com.intellij.database.model.RawConnectionConfig;
 import com.intellij.database.psi.DbTable;
@@ -426,8 +426,8 @@ public class MybatisGenerator {
             if (DbType.MySQL.equals(dbType)
                     || DbType.PostgreSQL.equals(dbType)) {
                 PluginConfiguration mySQLLimitPlugin = new PluginConfiguration();
-                mySQLLimitPlugin.addProperty("type", "cn.kt.MySQLLimitPlugin");
-                mySQLLimitPlugin.setConfigurationType("cn.kt.MySQLLimitPlugin");
+                mySQLLimitPlugin.addProperty("type", "com.tianlei.mybatis.generate.plugin.MySQLLimitPlugin");
+                mySQLLimitPlugin.setConfigurationType("com.tianlei.mybatis.generate.plugin.MySQLLimitPlugin");
                 context.addPluginConfiguration(mySQLLimitPlugin);
             }
         }
@@ -435,7 +435,7 @@ public class MybatisGenerator {
         // for JSR310
         if (config.isJsr310Support()) {
             JavaTypeResolverConfiguration javaTypeResolverPlugin = new JavaTypeResolverConfiguration();
-            javaTypeResolverPlugin.setConfigurationType("cn.kt.JavaTypeResolverJsr310Impl");
+            javaTypeResolverPlugin.setConfigurationType("com.tianlei.mybatis.generate.plugin.JavaTypeResolverJsr310Impl");
             context.setJavaTypeResolverConfiguration(javaTypeResolverPlugin);
         }
 
@@ -444,8 +444,8 @@ public class MybatisGenerator {
             if (DbType.MySQL.equals(dbType)
                     || DbType.PostgreSQL.equals(dbType)) {
                 PluginConfiguration mySQLForUpdatePlugin = new PluginConfiguration();
-                mySQLForUpdatePlugin.addProperty("type", "cn.kt.MySQLForUpdatePlugin");
-                mySQLForUpdatePlugin.setConfigurationType("cn.kt.MySQLForUpdatePlugin");
+                mySQLForUpdatePlugin.addProperty("type", "com.tianlei.mybatis.generate.plugin.MySQLForUpdatePlugin");
+                mySQLForUpdatePlugin.setConfigurationType("com.tianlei.mybatis.generate.plugin.MySQLForUpdatePlugin");
                 context.addPluginConfiguration(mySQLForUpdatePlugin);
             }
         }
@@ -455,8 +455,8 @@ public class MybatisGenerator {
             if (DbType.MySQL.equals(dbType)
                     || DbType.PostgreSQL.equals(dbType)) {
                 PluginConfiguration repositoryPlugin = new PluginConfiguration();
-                repositoryPlugin.addProperty("type", "cn.kt.RepositoryPlugin");
-                repositoryPlugin.setConfigurationType("cn.kt.RepositoryPlugin");
+                repositoryPlugin.addProperty("type", "com.tianlei.mybatis.generate.plugin.RepositoryPlugin");
+                repositoryPlugin.setConfigurationType("com.tianlei.mybatis.generate.plugin.RepositoryPlugin");
                 context.addPluginConfiguration(repositoryPlugin);
             }
         }
@@ -465,8 +465,8 @@ public class MybatisGenerator {
             if (DbType.MySQL.equals(dbType)
                     || DbType.PostgreSQL.equals(dbType)) {
                 PluginConfiguration commonDAOInterfacePlugin = new PluginConfiguration();
-                commonDAOInterfacePlugin.addProperty("type", "cn.kt.CommonDAOInterfacePlugin");
-                commonDAOInterfacePlugin.setConfigurationType("cn.kt.CommonDAOInterfacePlugin");
+                commonDAOInterfacePlugin.addProperty("type", "com.tianlei.mybatis.generate.plugin.CommonDAOInterfacePlugin");
+                commonDAOInterfacePlugin.setConfigurationType("com.tianlei.mybatis.generate.plugin.CommonDAOInterfacePlugin");
                 context.addPluginConfiguration(commonDAOInterfacePlugin);
             }
         }
@@ -478,7 +478,7 @@ public class MybatisGenerator {
             context.addPluginConfiguration(pluginConfiguration);
         }
 
-        if (config.isUseColumnAndTableAnnotation()) {
+        if (config.isUseJpaAnnotation()) {
             // 添加 @Column @Table注解
             PluginConfiguration pluginConfiguration = new PluginConfiguration();
             pluginConfiguration.addProperty("type", "com.tianlei.mybatis.generate.plugin.ColumnAndTableAnnotationPlugin");

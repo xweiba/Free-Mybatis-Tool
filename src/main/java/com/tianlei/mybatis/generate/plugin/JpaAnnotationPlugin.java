@@ -6,15 +6,16 @@ import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
-* entity添加@Table @Column注解
-*
-* @author weiba
-* @date 2024/6/13 上午9:41
-*/
-public class ColumnAndTableAnnotationPlugin extends PluginAdapter {
+ * Jpa 注解
+ *
+ * 作者 weiba
+ * 日期 2024/6/13 上午9:41
+ */
+public class JpaAnnotationPlugin extends PluginAdapter {
 
     @Override
     public boolean validate(List<String> warnings) {
@@ -58,27 +59,74 @@ public class ColumnAndTableAnnotationPlugin extends PluginAdapter {
                                        IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
                                        ModelClassType modelClassType) {
 
+        boolean isId = introspectedColumn.isIdentity();
+
+        if (!isId) {
+            Iterator<IntrospectedColumn> var5 = introspectedTable.getPrimaryKeyColumns().iterator();
+
+            while (var5.hasNext()) {
+                IntrospectedColumn column = var5.next();
+                if (introspectedColumn == column) {
+                    isId = true;
+                    break;
+                }
+            }
+        }
+
+
+        // 处理主键标识
+        if (isId) {
+            topLevelClass.addImportedType("javax.persistence.Id");
+            field.addAnnotation("@Id");
+        }
+
+        // 处理自生成主键注解
+        if (introspectedColumn.isAutoIncrement()) {
+            topLevelClass.addImportedType("javax.persistence.GeneratedValue");
+            if (introspectedTable.getTableConfiguration().getGeneratedKey() != null
+                    && "JDBC".equals(introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement())) {
+                field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
+            } else {
+                topLevelClass.addImportedType("javax.persistence.GenerationType");
+                field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
+            }
+        }
+
+        // 处理Sequence列的注解
+        if (introspectedColumn.isSequenceColumn()) {
+            topLevelClass.addImportedType("javax.persistence.SequenceGenerator");
+            field.addAnnotation("@SequenceGenerator(name=\"seq_gen\",sequenceName=\"" +introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement()+ "\")");
+
+            topLevelClass.getImportedTypes().remove("javax.persistence.GenerationType");
+            topLevelClass.addImportedType("javax.persistence.GenerationType");
+            field.addAnnotation("@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"seq_gen\")");
+        }
+
+        // 添加@NotEmpty注解
+        if (!introspectedColumn.isNullable() && !isId) {
+            topLevelClass.addImportedType("org.hibernate.validator.constraints.NotEmpty");
+            field.addAnnotation("@NotEmpty");
+        }
+
+        // 添加@Column注解
         topLevelClass.addImportedType("javax.persistence.Column");
 
         StringBuilder sb = new StringBuilder();
+
         sb.append("@Column(name = \"");
         sb.append(introspectedColumn.getActualColumnName());
         sb.append("\"");
 
-        // 属性判断并添加
         if (!introspectedColumn.isNullable()) {
             sb.append(", nullable = false");
         }
 
-        if (introspectedColumn.isIdentity()) {
-            sb.append(", insertable = false");
-        }
-
+        // 如果是自增列，插入和更新时不带该属性
         if (introspectedColumn.isAutoIncrement()) {
-            sb.append(", updatable = false");
+            sb.append(", insertable = false, updatable = false");
         }
 
-        if (introspectedColumn.getLength() != 0) {
+        if (introspectedColumn.getLength() > 0) {
             sb.append(", length = ").append(introspectedColumn.getLength());
         }
 

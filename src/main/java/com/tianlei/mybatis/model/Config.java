@@ -104,7 +104,7 @@ public class Config {
     /**
      * 是否生成JPA注解
      */
-    private boolean annotation;
+    private boolean useJpaAnnotation;
 
     /**
      * 是否使用实际的列名
@@ -291,12 +291,12 @@ public class Config {
         this.annotationDAO = annotationDAO;
     }
 
-    public boolean isAnnotation() {
-        return annotation;
+    public boolean isUseJpaAnnotation() {
+        return useJpaAnnotation;
     }
 
-    public void setAnnotation(boolean annotation) {
-        this.annotation = annotation;
+    public void setUseJpaAnnotation(boolean useJpaAnnotation) {
+        this.useJpaAnnotation = useJpaAnnotation;
     }
 
     public boolean isUseActualColumnNames() {
