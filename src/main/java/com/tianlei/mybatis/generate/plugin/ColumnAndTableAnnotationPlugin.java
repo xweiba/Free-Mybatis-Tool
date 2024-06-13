@@ -9,7 +9,7 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import java.util.List;
 
 /**
-* PO 属性添加@Column注解
+* entity添加@Table @Column注解
 *
 * @author weiba
 * @date 2024/6/13 上午9:41
