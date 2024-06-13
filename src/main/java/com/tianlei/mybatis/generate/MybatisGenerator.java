@@ -196,8 +196,8 @@ public class MybatisGenerator {
 
         String daoName = config.getDaoName();
         String modelName = config.getModelName();
-        String daoPostfix = daoName.replace(modelName, "");
-        config.setDaoPostfix(daoPostfix);
+        /*String daoPostfix = daoName.replace(modelName, "");
+        config.setDaoPostfix(daoPostfix);*/
 
         historyConfigList.put(config.getName(), config);
         persistentConfig.setHistoryConfigList(historyConfigList);
@@ -485,8 +485,6 @@ public class MybatisGenerator {
             pluginConfiguration.setConfigurationType("com.tianlei.mybatis.generate.plugin.JpaAnnotationPlugin");
             context.addPluginConfiguration(pluginConfiguration);
         }
-
-
     }
 
     /**

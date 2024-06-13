@@ -38,6 +38,13 @@ public class Config {
      * dao后缀
      */
     private String daoPostfix;
+    private String modelPostfix;
+
+    /**
+     * dao前缀
+     */
+    private String daoPrefix;
+    private String modelPrefix;
 
     /**
      * 工程目录
@@ -390,6 +397,13 @@ public class Config {
         this.daoPostfix = daoPostfix;
     }
 
+    public String getModelPostfix() {
+        return modelPostfix;
+    }
+
+    public void setModelPostfix(String modelPostfix) {
+        this.modelPostfix = modelPostfix;
+    }
 
     public boolean isOverrideJava() {
         return overrideJava;
@@ -397,5 +411,21 @@ public class Config {
 
     public void setOverrideJava(boolean overrideJava) {
         this.overrideJava = overrideJava;
+    }
+
+    public String getDaoPrefix() {
+        return daoPrefix;
+    }
+
+    public void setDaoPrefix(String daoPrefix) {
+        this.daoPrefix = daoPrefix;
+    }
+
+    public String getModelPrefix() {
+        return modelPrefix;
+    }
+
+    public void setModelPrefix(String modelPrefix) {
+        this.modelPrefix = modelPrefix;
     }
 }
