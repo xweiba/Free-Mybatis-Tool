@@ -11,7 +11,7 @@
 
 ### Fixed
 - Fixed JPA annotation @GeneratedValue being generated multiple times
-- Fixed JPA self-generated primary key annotation exception
+- Fixed JPA primary key generated annotation exception
 - Fixed the issue where mapper xml sql generates an exception when a non-GeneratedKey primary key is set to GeneratedKey
 
 ## [2.2.2]
