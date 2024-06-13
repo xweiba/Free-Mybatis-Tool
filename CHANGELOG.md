@@ -2,10 +2,14 @@
 
 # Free MyBatis Tool Changelog
 
-## [2.2.2]
+## [2.2.3]
 
 ### Changed
-- Add @Column @Table Annotation Options
+- The gene-plugin jar dependencies are migrated to the plug-in project
+- JPA annotation implementation is separated from DbRemarksCommentGenerator to JpaAnnotationPlugin
+- Fixed JPA annotation @GeneratedValue being generated multiple times
+- Fixed JPA self-generated primary key annotation exception
+- Fixed the issue where mapper xml sql generates an exception when a non-GeneratedKey primary key is set to GeneratedKey
 
 ## [2.2.2]
 
