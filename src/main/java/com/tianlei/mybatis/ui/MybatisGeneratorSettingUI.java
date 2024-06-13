@@ -44,6 +44,7 @@ public class MybatisGeneratorSettingUI extends JDialog {
     private JCheckBox jsr310SupportBox = new JCheckBox("JSR310: Date and Time API");
     private JCheckBox annotationBox = new JCheckBox("JPA-Annotation(JPA注解)");
     private JCheckBox useActualColumnNamesBox = new JCheckBox("Actual-Column(实际的列名)");
+    private final JCheckBox useColumnBox = new JCheckBox("@Column @Table 注解");
     private JCheckBox useTableNameAliasBox = new JCheckBox("Use-Alias(启用别名查询)");
     private JCheckBox useExampleBox = new JCheckBox("Use-Example");
     private JCheckBox offsetLimitBox = new JCheckBox("Page(分页，需开启Use-Example)");
@@ -149,7 +150,7 @@ public class MybatisGeneratorSettingUI extends JDialog {
         /**
          * options panel
          */
-        JBPanel optionsPanel = new JBPanel(new GridLayout(5, 5, 5, 5));
+        JBPanel optionsPanel = new JBPanel(new GridLayout(0, 4, 5, 5));
         optionsPanel.setBorder(BorderFactory.createTitledBorder("options panel"));
 
         /**
@@ -173,6 +174,7 @@ public class MybatisGeneratorSettingUI extends JDialog {
         optionsPanel.add(jsr310SupportBox);
         optionsPanel.add(annotationBox);
         optionsPanel.add(useActualColumnNamesBox);
+        optionsPanel.add(useColumnBox);
         optionsPanel.add(useTableNameAliasBox);
         optionsPanel.add(useExampleBox);
         optionsPanel.add(offsetLimitBox);
@@ -211,6 +213,7 @@ public class MybatisGeneratorSettingUI extends JDialog {
             jsr310SupportBox.setSelected(config.isJsr310Support());
             annotationBox.setSelected(config.isAnnotation());
             useActualColumnNamesBox.setSelected(config.isUseActualColumnNames());
+            useColumnBox.setSelected(config.isUseColumnAndTableAnnotation());
             useTableNameAliasBox.setSelected(config.isUseTableNameAlias());
             useExampleBox.setSelected(config.isUseExample());
             useLombokBox.setSelected(config.isUseLombokPlugin());
@@ -261,6 +264,7 @@ public class MybatisGeneratorSettingUI extends JDialog {
         config.setJsr310Support(jsr310SupportBox.getSelectedObjects() != null);
         config.setAnnotation(annotationBox.getSelectedObjects() != null);
         config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
+        config.setUseColumnAndTableAnnotation(useColumnBox.getSelectedObjects() != null);
         config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
         config.setUseExample(useExampleBox.getSelectedObjects() != null);
         config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);

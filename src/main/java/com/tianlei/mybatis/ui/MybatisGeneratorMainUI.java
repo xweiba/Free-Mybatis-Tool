@@ -71,21 +71,22 @@ public class MybatisGeneratorMainUI extends JFrame {
     private final JTextField daoMvnField = new JBTextField(15);
     private final JTextField xmlMvnField = new JBTextField(15);
 
+    private final JCheckBox useLombokBox = new JCheckBox("Use-Lombok");
     private final JCheckBox commentBox = new JCheckBox("Comment(实体注释)");
-    private final JCheckBox overrideXMLBox = new JCheckBox("Overwrite-Xml");
-    private final JCheckBox overrideJavaBox = new JCheckBox("Overwrite-Java");
-    private final JCheckBox needToStringHashcodeEqualsBox = new JCheckBox("toString/hashCode/equals");
     private final JCheckBox useSchemaPrefixBox = new JCheckBox("Use-Schema(使用Schema前缀)");
+    private final JCheckBox overrideJavaBox = new JCheckBox("Overwrite-Java");
+    private final JCheckBox overrideXMLBox = new JCheckBox("Overwrite-Xml");
     private final JCheckBox annotationDAOBox = new JCheckBox("Repository-Annotation(Repository注解)");
+    private final JCheckBox needToStringHashcodeEqualsBox = new JCheckBox("toString/hashCode/equals");
     private final JCheckBox useDAOExtendStyleBox = new JCheckBox("Parent-Interface(Dao公共父接口)");
     private final JCheckBox jsr310SupportBox = new JCheckBox("JSR310: Date and Time API");
     private final JCheckBox annotationBox = new JCheckBox("JPA-Annotation(JPA注解)");
     private final JCheckBox useActualColumnNamesBox = new JCheckBox("Actual-Column(实际的列名)");
+    private final JCheckBox useColumnAndTableAnnotationBox = new JCheckBox("@Column @Table 注解");
     private final JCheckBox useTableNameAliasBox = new JCheckBox("Use-Alias(启用别名查询)");
     private final JCheckBox useExampleBox = new JCheckBox("Use-Example");
     private final JCheckBox offsetLimitBox = new JCheckBox("Page(分页，需开启Use-Example)");
     private final JCheckBox needForUpdateBox = new JCheckBox("Add-ForUpdate(需开启Use-Example)");
-    private final JCheckBox useLombokBox = new JCheckBox("Use-Lombok");
 
 
     public MybatisGeneratorMainUI(AnActionEvent anActionEvent) throws HeadlessException {
@@ -222,6 +223,7 @@ public class MybatisGeneratorMainUI extends JFrame {
                 generator_config.setJsr310Support(jsr310SupportBox.getSelectedObjects() != null);
                 generator_config.setAnnotation(annotationBox.getSelectedObjects() != null);
                 generator_config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
+                generator_config.setUseColumnAndTableAnnotation(useColumnAndTableAnnotationBox.getSelectedObjects() != null);
                 generator_config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
                 generator_config.setUseExample(useExampleBox.getSelectedObjects() != null);
                 generator_config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);
@@ -265,6 +267,7 @@ public class MybatisGeneratorMainUI extends JFrame {
                     generator_config.setJsr310Support(jsr310SupportBox.getSelectedObjects() != null);
                     generator_config.setAnnotation(annotationBox.getSelectedObjects() != null);
                     generator_config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
+                    generator_config.setUseColumnAndTableAnnotation(useColumnAndTableAnnotationBox.getSelectedObjects() != null);
                     generator_config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
                     generator_config.setUseExample(useExampleBox.getSelectedObjects() != null);
                     generator_config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);
@@ -482,7 +485,7 @@ public class MybatisGeneratorMainUI extends JFrame {
      * options
      */
     private JBPanel initOptionsPanel() {
-        JBPanel optionsPanel = new JBPanel(new GridLayout(5, 5, 5, 5));
+        JBPanel optionsPanel = new JBPanel(new GridLayout(0, 4, 5, 5));
         optionsPanel.setBorder(BorderFactory.createTitledBorder("Options"));
         if (config == null) {
             /**
@@ -507,6 +510,7 @@ public class MybatisGeneratorMainUI extends JFrame {
             jsr310SupportBox.setSelected(config.isJsr310Support());
             annotationBox.setSelected(config.isAnnotation());
             useActualColumnNamesBox.setSelected(config.isUseActualColumnNames());
+            useColumnAndTableAnnotationBox.setSelected(config.isUseColumnAndTableAnnotation());
             useTableNameAliasBox.setSelected(config.isUseTableNameAlias());
             useExampleBox.setSelected(config.isUseExample());
             useLombokBox.setSelected(config.isUseLombokPlugin());
@@ -522,6 +526,7 @@ public class MybatisGeneratorMainUI extends JFrame {
         optionsPanel.add(jsr310SupportBox);
         optionsPanel.add(annotationBox);
         optionsPanel.add(useActualColumnNamesBox);
+        optionsPanel.add(useColumnAndTableAnnotationBox);
         optionsPanel.add(useTableNameAliasBox);
         optionsPanel.add(useExampleBox);
         optionsPanel.add(offsetLimitBox);
@@ -578,6 +583,7 @@ public class MybatisGeneratorMainUI extends JFrame {
                         jsr310SupportBox.setSelected(selectedConfig.isJsr310Support());
                         annotationBox.setSelected(selectedConfig.isAnnotation());
                         useActualColumnNamesBox.setSelected(selectedConfig.isUseActualColumnNames());
+                        useColumnAndTableAnnotationBox.setSelected(selectedConfig.isUseColumnAndTableAnnotation());
                         useTableNameAliasBox.setSelected(selectedConfig.isUseTableNameAlias());
                         useExampleBox.setSelected(selectedConfig.isUseExample());
                         useLombokBox.setSelected(selectedConfig.isUseLombokPlugin());

@@ -126,6 +126,19 @@ public class Config {
     private String connectorJarPath;
     private boolean useLombokPlugin;
 
+    /**
+     * 是否开启 @Column @Table 注解
+     */
+    private boolean useColumnAndTableAnnotation;
+
+    public boolean isUseColumnAndTableAnnotation() {
+        return useColumnAndTableAnnotation;
+    }
+
+    public void setUseColumnAndTableAnnotation(boolean useColumnAndTableAnnotation) {
+        this.useColumnAndTableAnnotation = useColumnAndTableAnnotation;
+    }
+
     public boolean isUseLombokPlugin() {
         return useLombokPlugin;
     }

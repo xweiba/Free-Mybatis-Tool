@@ -478,6 +478,15 @@ public class MybatisGenerator {
             context.addPluginConfiguration(pluginConfiguration);
         }
 
+        if (config.isUseColumnAndTableAnnotation()) {
+            // 添加 @Column @Table注解
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.addProperty("type", "com.tianlei.mybatis.generate.plugin.ColumnAndTableAnnotationPlugin");
+            pluginConfiguration.setConfigurationType("com.tianlei.mybatis.generate.plugin.ColumnAndTableAnnotationPlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+        }
+
+
     }
 
     /**
