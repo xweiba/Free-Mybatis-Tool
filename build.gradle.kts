@@ -1,6 +1,12 @@
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.changelog.Changelog
 
+allprojects {
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+}
+
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
