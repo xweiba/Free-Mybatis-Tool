@@ -4,6 +4,11 @@
 
 ## [2.2.2]
 
+### Changed
+- Add @Column @Table Annotation Options
+
+## [2.2.2]
+
 ### Fixed
 - Version compatibility fix
 
