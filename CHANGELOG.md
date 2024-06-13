@@ -5,14 +5,14 @@
 ## [2.2.3]
 
 ### Changed
-- The gene-plugin jar dependencies are migrated to the plug-in project
-- JPA annotation implementation is separated from DbRemarksCommentGenerator to JpaAnnotationPlugin
-- JpaAnnotationPlugin adds @Column annotation processing
+- To fix the `JPA annotation` `bug`, the dependency on `gene-plugin jar` was migrated into the project.
+- The implementation of `JPA annotations` was split from `DbRemarksCommentGenerator` into a separate handling by `JpaAnnotationPlugin`.
+- Added `@Column` annotation generation for `JPA annotations`.
 
 ### Fixed
-- Fixed JPA annotation @GeneratedValue being generated multiple times
-- Fixed JPA primary key generated annotation exception
-- Fixed the issue where mapper xml sql generates an exception when a non-GeneratedKey primary key is set to GeneratedKey
+- enabling `JPA annotations` would generate `@GeneratedValue` annotations multiple times for primary keys.
+- enabling `JPA annotations` would add `@GeneratedValue` annotation to non-auto-generated primary keys.
+- non-auto-generated primary keys were set as `GeneratedKey` in `TableConfiguration`, which resulted in primary keys not being generated in the `mapper xml sql`.
 
 ## [2.2.2]
 
