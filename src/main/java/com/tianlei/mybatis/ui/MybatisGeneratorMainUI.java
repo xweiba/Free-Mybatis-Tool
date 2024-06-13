@@ -230,7 +230,7 @@ public class MybatisGeneratorMainUI extends JFrame {
                 generator_config.setDaoMvnPath(daoMvnField.getText());
                 generator_config.setXmlMvnPath(xmlMvnField.getText());
 
-                result = new MybatisGenerator(generator_config).execute(anActionEvent, true, psiElements[0]);
+                result = new MybatisGenerator(generator_config, persistentConfig).execute(anActionEvent, true, psiElements[0]);
             } else {
 
                 for (PsiElement psiElement : psiElements) {
@@ -273,7 +273,7 @@ public class MybatisGeneratorMainUI extends JFrame {
                     generator_config.setDaoMvnPath(daoMvnField.getText());
                     generator_config.setXmlMvnPath(xmlMvnField.getText());
                     boolean needSaveConfig = historyConfigList == null || !historyConfigList.containsKey(tableName);
-                    result = new MybatisGenerator(generator_config).execute(anActionEvent, needSaveConfig, psiElement);
+                    result = new MybatisGenerator(generator_config, persistentConfig).execute(anActionEvent, needSaveConfig, psiElement);
                 }
 
             }

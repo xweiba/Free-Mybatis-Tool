@@ -38,8 +38,9 @@ public class MybatisGenerator {
     private DbType dbType; // 数据库类型
     private IntellijTableInfo intellijTableInfo;
 
-    public MybatisGenerator(Config config) {
+    public MybatisGenerator(Config config, PersistentConfig persistentConfig) {
         this.config = config;
+        this.persistentConfig = persistentConfig;
     }
 
     /**
@@ -51,7 +52,6 @@ public class MybatisGenerator {
     public List<String> execute(final AnActionEvent anActionEvent, boolean saveConfig, PsiElement psiElement) throws Exception {
         List<String> result = new ArrayList<>();
         this.project = anActionEvent.getData(PlatformDataKeys.PROJECT);
-        this.persistentConfig = PersistentConfig.getInstance(project);
 
         if (saveConfig) {
             saveConfig(); // 执行前 先保存一份当前配置
