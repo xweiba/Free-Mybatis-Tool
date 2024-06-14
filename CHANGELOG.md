@@ -8,6 +8,7 @@
 - To fix the `JPA annotation` `bug`, the dependency on `gene-plugin jar` was migrated into the project.
 - The implementation of `JPA annotations` was split from `DbRemarksCommentGenerator` into a separate handling by `JpaAnnotationPlugin`.
 - Added `@Column` annotation generation for `JPA annotations`.
+- Add prefix and suffix matching to Model and Dao names
 
 ### Fixed
 - enabling `JPA annotations` would generate `@GeneratedValue` annotations multiple times for primary keys.
