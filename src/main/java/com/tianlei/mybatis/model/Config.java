@@ -135,14 +135,23 @@ public class Config {
 
     private String encoding;
     private String connectorJarPath;
-    private boolean useLombokPlugin;
+    private boolean useLombokData;
+    private boolean useLombokAccessors;
 
-    public boolean isUseLombokPlugin() {
-        return useLombokPlugin;
+    public boolean isUseLombokData() {
+        return useLombokData;
     }
 
-    public void setUseLombokPlugin(boolean useLombokPlugin) {
-        this.useLombokPlugin = useLombokPlugin;
+    public void setUseLombokData(boolean useLombokData) {
+        this.useLombokData = useLombokData;
+    }
+
+    public boolean isUseLombokAccessors() {
+        return useLombokAccessors;
+    }
+
+    public void setUseLombokAccessors(boolean useLombokAccessors) {
+        this.useLombokAccessors = useLombokAccessors;
     }
 
     public boolean isJsr310Support() {

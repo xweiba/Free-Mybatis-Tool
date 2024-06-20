@@ -30,7 +30,6 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
     implementation(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"))))
-    implementation("com.softwareloop:mybatis-generator-lombok-plugin:1.0")
     implementation("uk.com.robust-it:cloning:1.9.2")
     testImplementation("junit:junit:4.13.1")
 }

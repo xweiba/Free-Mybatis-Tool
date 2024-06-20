@@ -77,7 +77,8 @@ public class MybatisGeneratorMainUI extends JFrame {
     private final JTextField daoMvnField = new JBTextField(15);
     private final JTextField xmlMvnField = new JBTextField(15);
 
-    private final JCheckBox useLombokBox = new JCheckBox("Use-Lombok");
+    private final JCheckBox useLombokDataBox = new JCheckBox("Use-Lombok-Data");
+    private final JCheckBox useLombokAccessorsBox = new JCheckBox("Use-Lombok-Accessors");
     private final JCheckBox commentBox = new JCheckBox("Comment(实体注释)");
     private final JCheckBox useSchemaPrefixBox = new JCheckBox("Use-Schema(使用Schema前缀)");
     private final JCheckBox overrideJavaBox = new JCheckBox("Overwrite-Java");
@@ -242,7 +243,8 @@ public class MybatisGeneratorMainUI extends JFrame {
                 generator_config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
                 generator_config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
                 generator_config.setUseExample(useExampleBox.getSelectedObjects() != null);
-                generator_config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);
+                generator_config.setUseLombokData(useLombokDataBox.getSelectedObjects() != null);
+                generator_config.setUseLombokAccessors(useLombokAccessorsBox.getSelectedObjects() != null);
 
                 generator_config.setModelMvnPath(modelMvnField.getText());
                 generator_config.setDaoMvnPath(daoMvnField.getText());
@@ -300,12 +302,13 @@ public class MybatisGeneratorMainUI extends JFrame {
                     generator_config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
                     generator_config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
                     generator_config.setUseExample(useExampleBox.getSelectedObjects() != null);
-                    generator_config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);
+                    generator_config.setUseLombokData(useLombokDataBox.getSelectedObjects() != null);
+                    generator_config.setUseLombokAccessors(useLombokAccessorsBox.getSelectedObjects() != null);
 
                     generator_config.setModelMvnPath(modelMvnField.getText());
                     generator_config.setDaoMvnPath(daoMvnField.getText());
                     generator_config.setXmlMvnPath(xmlMvnField.getText());
-                    boolean needSaveConfig = historyConfigList == null || !historyConfigList.containsKey(tableName);
+                    boolean needSaveConfig = true;
                     result = new MybatisGenerator(generator_config, persistentConfig).execute(anActionEvent, needSaveConfig, psiElement);
                 }
 
@@ -543,7 +546,8 @@ public class MybatisGeneratorMainUI extends JFrame {
             /**
              * Default selected
              **/
-            useLombokBox.setSelected(true);
+            useLombokDataBox.setSelected(true);
+            useLombokAccessorsBox.setSelected(false);
             commentBox.setSelected(true);
             overrideXMLBox.setSelected(true);
             overrideJavaBox.setSelected(true);
@@ -564,9 +568,11 @@ public class MybatisGeneratorMainUI extends JFrame {
             useActualColumnNamesBox.setSelected(config.isUseActualColumnNames());
             useTableNameAliasBox.setSelected(config.isUseTableNameAlias());
             useExampleBox.setSelected(config.isUseExample());
-            useLombokBox.setSelected(config.isUseLombokPlugin());
+            useLombokDataBox.setSelected(config.isUseLombokData());
+            useLombokAccessorsBox.setSelected(config.isUseLombokAccessors());
         }
-        optionsPanel.add(useLombokBox);
+        optionsPanel.add(useLombokDataBox);
+        optionsPanel.add(useLombokAccessorsBox);
         optionsPanel.add(commentBox);
         optionsPanel.add(useSchemaPrefixBox);
         optionsPanel.add(overrideJavaBox);
@@ -635,7 +641,8 @@ public class MybatisGeneratorMainUI extends JFrame {
                         useActualColumnNamesBox.setSelected(selectedConfig.isUseActualColumnNames());
                         useTableNameAliasBox.setSelected(selectedConfig.isUseTableNameAlias());
                         useExampleBox.setSelected(selectedConfig.isUseExample());
-                        useLombokBox.setSelected(selectedConfig.isUseLombokPlugin());
+                        useLombokDataBox.setSelected(selectedConfig.isUseLombokData());
+                        useLombokAccessorsBox.setSelected(selectedConfig.isUseLombokAccessors());
                     }
                 }
             }

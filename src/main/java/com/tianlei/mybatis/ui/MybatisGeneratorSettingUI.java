@@ -48,7 +48,8 @@ public class MybatisGeneratorSettingUI extends JDialog {
     private JCheckBox useExampleBox = new JCheckBox("Use-Example");
     private JCheckBox offsetLimitBox = new JCheckBox("Page(分页，需开启Use-Example)");
     private JCheckBox needForUpdateBox = new JCheckBox("Add-ForUpdate(需开启Use-Example)");
-    private JCheckBox useLombokBox = new JCheckBox("Use-Lombok");
+    private JCheckBox useLombokDataBox = new JCheckBox("Use-Lombok-Data");
+    private JCheckBox useLombokAccessorsBox = new JCheckBox("Use-Lombok-Accessors");
 
     private PersistentConfig config;
 
@@ -155,14 +156,16 @@ public class MybatisGeneratorSettingUI extends JDialog {
         /**
          * Default selected
          **/
-        useLombokBox.setSelected(true);
+        useLombokDataBox.setSelected(true);
+        useLombokAccessorsBox.setSelected(false);
         commentBox.setSelected(true);
         overrideJavaBox.setSelected(true);
         overrideXMLBox.setSelected(true);
         useSchemaPrefixBox.setSelected(true);
         annotationDAOBox.setSelected(true);
 
-        optionsPanel.add(useLombokBox);
+        optionsPanel.add(useLombokDataBox);
+        optionsPanel.add(useLombokAccessorsBox);
         optionsPanel.add(commentBox);
         optionsPanel.add(useSchemaPrefixBox);
         optionsPanel.add(overrideJavaBox);
@@ -213,7 +216,8 @@ public class MybatisGeneratorSettingUI extends JDialog {
             useActualColumnNamesBox.setSelected(config.isUseActualColumnNames());
             useTableNameAliasBox.setSelected(config.isUseTableNameAlias());
             useExampleBox.setSelected(config.isUseExample());
-            useLombokBox.setSelected(config.isUseLombokPlugin());
+            useLombokDataBox.setSelected(config.isUseLombokData());
+            useLombokAccessorsBox.setSelected(config.isUseLombokAccessors());
         } else {
             modelPackageField.addFocusListener(new JTextFieldHintListener(modelPackageField, "generator"));
             daoPackageField.addFocusListener(new JTextFieldHintListener(daoPackageField, "generator"));
@@ -263,7 +267,8 @@ public class MybatisGeneratorSettingUI extends JDialog {
         config.setUseActualColumnNames(useActualColumnNamesBox.getSelectedObjects() != null);
         config.setUseTableNameAlias(useTableNameAliasBox.getSelectedObjects() != null);
         config.setUseExample(useExampleBox.getSelectedObjects() != null);
-        config.setUseLombokPlugin(useLombokBox.getSelectedObjects() != null);
+        config.setUseLombokData(useLombokDataBox.getSelectedObjects() != null);
+        config.setUseLombokAccessors(useLombokAccessorsBox.getSelectedObjects() != null);
         initConfig.put(config.getName(), config);
         this.config.setInitConfig(initConfig);
     }

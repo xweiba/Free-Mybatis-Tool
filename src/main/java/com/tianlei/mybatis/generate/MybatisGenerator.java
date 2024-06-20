@@ -471,10 +471,13 @@ public class MybatisGenerator {
             }
         }
         // Lombok 插件
-        if (config.isUseLombokPlugin()) {
+        if (config.isUseLombokData() || config.isUseLombokAccessors()) {
             PluginConfiguration pluginConfiguration = new PluginConfiguration();
-            pluginConfiguration.addProperty("type", "com.softwareloop.mybatis.generator.plugins.LombokPlugin");
-            pluginConfiguration.setConfigurationType("com.softwareloop.mybatis.generator.plugins.LombokPlugin");
+            pluginConfiguration.addProperty("type", "com.tianlei.mybatis.generate.plugin.LombokPlugin");
+            pluginConfiguration.setConfigurationType("com.tianlei.mybatis.generate.plugin.LombokPlugin");
+            if (config.isUseLombokAccessors()) {
+                pluginConfiguration.addProperty("accessors", "true");
+            }
             context.addPluginConfiguration(pluginConfiguration);
         }
 

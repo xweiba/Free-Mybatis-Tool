@@ -8,6 +8,7 @@
 - To fix the `JPA annotation` `bug`, the dependency on `gene-plugin jar` was migrated into the project.
 - The implementation of `JPA annotations` was split from `DbRemarksCommentGenerator` into a separate handling by `JpaAnnotationPlugin`.
 - Added `@Column` annotation generation for `JPA annotations`.
+- Migrate the dependency implementation of `LombokPlugin` into the project and add the @Accessors(chain = true) annotation option.
 - Add prefix and suffix matching to Model and Dao names
 
 ### Fixed
